@@ -1,6 +1,5 @@
 package com.example.businesscard
 
-import android.content.res.Configuration
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -23,6 +22,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.text.style.TextAlign
 import com.example.businesscard.ui.theme.BusinessCardTheme
 import com.example.businesscard.ui.theme.SoftGrey
+
+// Вроде закончил, только на эмуляторе не запускается,
+// только в предварительном просмотре.
+// Проблема в том что манифест не видит файла MainActivity.kt
+
 
 @Composable
 fun BusinessCard() {
