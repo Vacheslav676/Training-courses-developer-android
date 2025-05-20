@@ -1,19 +1,26 @@
 package com.example.businesscard
 
-import com.example.businesscard.ui.theme.BusinessCardTheme
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.material3.Surface
-import androidx.compose.runtime.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
-//BusinessCardTheme
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun BusinessCard() {
@@ -21,23 +28,25 @@ fun BusinessCard() {
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth(),
-        shape = BusinessCardTheme.shapes.medium,
+        shape = RoundedCornerShape(8.dp),
         color = Color.White,
-        elevation = 4.dp
+        shadowElevation = 4.dp
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+
             // Контейнер для фото
             Box(
                 modifier = Modifier
                     .size(80.dp)
                     .background(Color.LightGray)
-                    .border(2.dp, Color.Gray, shape = MaterialTheme.shapes.small)
+                    .clip(RoundedCornerShape(12.dp))
+                    .border(2.dp, Color.Gray)
             ) {
                 Icon(
-                    imageVector = androidx.compose.material.icons.Icons.Default.Person,
+                    imageVector = Icons.Default.Person,
                     contentDescription = "Фото профиля",
                     tint = Color.Gray,
                     modifier = Modifier.align(Alignment.Center)
@@ -69,68 +78,36 @@ fun BusinessCard() {
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp)
-                ) {
-                    Icon(
-                        imageVector = androidx.compose.material.icons.Icons.Default.Call,
-                        contentDescription = "Телефон",
-                        tint = Color.Gray,
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = "+7 (999) 123-45-67",
-                        fontSize = 14.sp,
-                        color = Color.Purple
-                    )
-                }
-
+                ContactRow(icon = Icons.Default.Call, label = "+7 (999) 123-45-67", color = Color(0xFF6200EE))
                 Divider(color = Color.LightGray, thickness = 1.dp)
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp)
-                ) {
-                    Icon(
-                        imageVector = androidx.compose.material.icons.Icons.Default.Share,
-                        contentDescription = "Социальные сети",
-                        tint = Color.Gray,
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = "@ivanov_dev",
-                        fontSize = 14.sp,
-                        color = Color.Purple
-                    )
-                }
-
+                ContactRow(icon = Icons.Default.Share, label = "@ivanov_dev", color = Color(0xFF6200EE))
                 Divider(color = Color.LightGray, thickness = 1.dp)
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 8.dp)
-                ) {
-                    Icon(
-                        imageVector = androidx.compose.material.icons.Icons.Default.Email,
-                        contentDescription = "Email",
-                        tint = Color.Gray,
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(
-                        text = "ivanov@example.com",
-                        fontSize = 14.sp,
-                        color = Color.Purple
-                    )
-                }
+                ContactRow(icon = Icons.Default.Email, label = "ivanov@example.com", color = Color(0xFF6200EE))
             }
         }
+    }
+}
+
+@Composable
+fun ContactRow(icon: ImageVector, label: String, color: Color) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp, vertical = 12.dp)
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = Color.Gray,
+            modifier = Modifier.size(24.dp)
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(
+            text = label,
+            fontSize = 14.sp,
+            color = color,
+            modifier = Modifier.align(Alignment.CenterVertically)
+        )
     }
 }
 
@@ -139,4 +116,3 @@ fun BusinessCard() {
 fun PreviewBusinessCard() {
     BusinessCard()
 }
-
