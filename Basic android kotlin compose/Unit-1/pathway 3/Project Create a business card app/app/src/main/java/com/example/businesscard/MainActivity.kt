@@ -60,6 +60,7 @@ fun Greeting(modifier: Modifier = Modifier) {
         }
 
     }
+}
     @Preview
     @Composable
     fun GreetingPreview() {
@@ -67,4 +68,3 @@ fun Greeting(modifier: Modifier = Modifier) {
             Greeting()
         }
     }
-}
