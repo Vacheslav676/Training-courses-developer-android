@@ -1,5 +1,6 @@
 package com.example.businesscard
 
+import android.content.res.Configuration
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -8,19 +9,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.text.style.TextAlign
+import com.example.businesscard.ui.theme.BusinessCardTheme
+import com.example.businesscard.ui.theme.SoftGrey
 
 @Composable
 fun BusinessCard() {
@@ -29,7 +31,8 @@ fun BusinessCard() {
             .padding(16.dp)
             .fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),
-        color = Color.White,
+         color = SoftGrey, // Теперь фон всегда мягко-зеленый
+        // color = MaterialTheme.colorScheme.background, // Используем цвет из темы,(почемуто не работает)
         shadowElevation = 4.dp
     ) {
         Column(
@@ -37,28 +40,21 @@ fun BusinessCard() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            // Контейнер для фото
-            Box(
+            // Логотип Android
+            Image(
+                painter = painterResource(id = R.drawable.android_logo),
+                contentDescription = "Логотип Android",
                 modifier = Modifier
                     .size(80.dp)
-                    .background(Color.LightGray)
                     .clip(RoundedCornerShape(12.dp))
-                    .border(2.dp, Color.Gray)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = "Фото профиля",
-                    tint = Color.Gray,
-                    modifier = Modifier.align(Alignment.Center)
-                )
-            }
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             // Имя и фамилия
             Text(
-                text = "Иван Иванов",
-                fontSize = 20.sp,
+                text = "Jennifer Doe",
+                fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
@@ -67,22 +63,21 @@ fun BusinessCard() {
 
             // Должность
             Text(
-                text = "Разработчик мобильных приложений",
+                text = "Android Developer Extraordinaire",
                 fontSize = 16.sp,
-                color = Color.Gray
+                color = Color.Green,
+                textAlign = TextAlign.Center
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(32.dp))
 
             // Блок контактов
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                ContactRow(icon = Icons.Default.Call, label = "+7 (999) 123-45-67", color = Color(0xFF6200EE))
-                Divider(color = Color.LightGray, thickness = 1.dp)
-                ContactRow(icon = Icons.Default.Share, label = "@ivanov_dev", color = Color(0xFF6200EE))
-                Divider(color = Color.LightGray, thickness = 1.dp)
-                ContactRow(icon = Icons.Default.Email, label = "ivanov@example.com", color = Color(0xFF6200EE))
+                ContactRow(icon = Icons.Default.Call, label = "+11 (123) 444 555 666", color = Color.Green)
+                ContactRow(icon = Icons.Default.Share, label = "@AndroidDev", color = Color.Green)
+                ContactRow(icon = Icons.Default.Email, label = "jen.doe@android.com", color = Color.Green)
             }
         }
     }
@@ -98,7 +93,7 @@ fun ContactRow(icon: ImageVector, label: String, color: Color) {
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = Color.Gray,
+            tint = color,
             modifier = Modifier.size(24.dp)
         )
         Spacer(modifier = Modifier.width(8.dp))
@@ -111,8 +106,13 @@ fun ContactRow(icon: ImageVector, label: String, color: Color) {
     }
 }
 
-@Preview(showBackground = true)
+@Preview(
+    showBackground = true,
+   // uiMode = Configuration.UI_MODE_NIGHT_YES // Показать темную тему
+)
 @Composable
 fun PreviewBusinessCard() {
-    BusinessCard()
+    BusinessCardTheme {
+        BusinessCard()
+    }
 }
