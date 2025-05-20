@@ -4,7 +4,7 @@ import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
-
+import com.example.businesscard.ui.theme.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
