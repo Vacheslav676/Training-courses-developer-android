@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,8 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.businesscard.ui.theme.BusinessCardTheme
-
-
+import androidx.activity.enableEdgeToEdge
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,26 +44,27 @@ class MainActivity : ComponentActivity() {
 }
 @Composable
 fun Greeting(modifier: Modifier = Modifier) {
-        Column(Modifier.fillMaxWidth()) {
-            
-            
-           Column(Modifier.weight(1f)) {
-               Text(text = "Hello")
-               Text(text = "Hello")
-               Text(text = "Hello")
-               }
-           Column(Modifier.weight(1f)) {
-               Text(text = "Hello")
-               Text(text = "Hello")
-               Text(text = "Hello")
-               Text(text = "Hello")
-               }
-    
+    Column(Modifier.fillMaxWidth()) {
+
+
+        Column(Modifier.weight(1f)) {
+            Text(text = "Hello")
+            Text(text = "Hello")
+            Text(text = "Hello")
         }
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    BusinessCardTheme {
-        Greeting()
+        Column(Modifier.weight(1f)) {
+            Text(text = "Hello")
+            Text(text = "Hello")
+            Text(text = "Hello")
+            Text(text = "Hello")
+        }
+
+    }
+    @Preview
+    @Composable
+    fun GreetingPreview() {
+        BusinessCardTheme {
+            Greeting()
+        }
     }
 }
