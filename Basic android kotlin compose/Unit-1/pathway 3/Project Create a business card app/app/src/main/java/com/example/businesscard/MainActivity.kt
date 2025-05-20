@@ -4,6 +4,7 @@ import com.example.businesscard.ui.theme.BusinessCardTheme
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,7 +21,7 @@ fun BusinessCard() {
         modifier = Modifier
             .padding(16.dp)
             .fillMaxWidth(),
-        shape = MaterialTheme.shapes.medium,
+        shape = BusinessCardTheme.shapes.medium,
         color = Color.White,
         elevation = 4.dp
     ) {
