@@ -36,11 +36,23 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting( modifier: Modifier = Modifier) {
-
-
-   Text(text = "Hello")
-
-}
+fun Greeting(modifier: Modifier = Modifier) {
+        Column(Modifier.fillMaxWidth()) {
+            
+            
+           Column(Modifier.weight(1f)) {
+               Text(text = "Hello")
+               Text(text = "Hello")
+               Text(text = "Hello")
+               }
+           Column(Modifier.weight(1f)) {
+               Text(text = "Hello")
+               Text(text = "Hello")
+               Text(text = "Hello")
+               Text(text = "Hello")
+               }
+    
+        }
 
 
 
