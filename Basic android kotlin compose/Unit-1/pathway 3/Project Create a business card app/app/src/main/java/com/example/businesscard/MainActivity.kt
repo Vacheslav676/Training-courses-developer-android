@@ -27,20 +27,20 @@ import androidx.compose.ui.text.style.TextAlign
 import com.example.businesscard.ui.theme.BusinessCardTheme
 import com.example.businesscard.ui.theme.SoftGrey
 
-// Вроде закончил, только на эмуляторе не запускается,
-// только в предварительном просмотре.
-// Проблема в том что манифест не видит файла MainActivity.kt
-
+// Вроде закончил, забыл создать функцию мзйн активитиб, два дня искал баг)))
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {    BusinessCardTheme {
+        setContent {
+            BusinessCardTheme {
             BusinessCard()
         }
         }}}
-            @Composable
-            fun BusinessCard() {
+
+
+@Composable
+fun BusinessCard() {
                 Surface(
                     modifier = Modifier
                         .padding(16.dp)
