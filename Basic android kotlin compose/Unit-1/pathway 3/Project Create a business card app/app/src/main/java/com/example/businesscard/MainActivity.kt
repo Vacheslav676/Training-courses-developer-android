@@ -1,5 +1,9 @@
 package com.example.businesscard
 
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -27,65 +31,84 @@ import com.example.businesscard.ui.theme.SoftGrey
 // только в предварительном просмотре.
 // Проблема в том что манифест не видит файла MainActivity.kt
 
-
-@Composable
-fun BusinessCard() {
-    Surface(
-        modifier = Modifier
-            .padding(16.dp)
-            .fillMaxWidth(),
-        shape = RoundedCornerShape(8.dp),
-         color = SoftGrey, // Теперь фон всегда мягко-зеленый
-        // color = MaterialTheme.colorScheme.background, // Используем цвет из темы,(почемуто не работает)
-        shadowElevation = 4.dp
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-
-            // Логотип Android
-            Image(
-                painter = painterResource(id = R.drawable.android_logo),
-                contentDescription = "Логотип Android",
-                modifier = Modifier
-                    .size(80.dp)
-                    .clip(RoundedCornerShape(12.dp))
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Имя и фамилия
-            Text(
-                text = "Jennifer Doe",
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.Black
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            // Должность
-            Text(
-                text = "Android Developer Extraordinaire",
-                fontSize = 16.sp,
-                color = Color.Green,
-                textAlign = TextAlign.Center
-            )
-
-            Spacer(modifier = Modifier.height(32.dp))
-
-            // Блок контактов
-            Column(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                ContactRow(icon = Icons.Default.Call, label = "+11 (123) 444 555 666", color = Color.Green)
-                ContactRow(icon = Icons.Default.Share, label = "@AndroidDev", color = Color.Green)
-                ContactRow(icon = Icons.Default.Email, label = "jen.doe@android.com", color = Color.Green)
-            }
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {    BusinessCardTheme {
+            BusinessCard()
         }
-    }
-}
+        }}}
+            @Composable
+            fun BusinessCard() {
+                Surface(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth(),
+                    shape = RoundedCornerShape(8.dp),
+                    color = SoftGrey, // Теперь фон всегда мягко-зеленый
+                    // color = MaterialTheme.colorScheme.background, // Используем цвет из темы,(почемуто не работает)
+                    shadowElevation = 4.dp
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+
+                        // Логотип Android
+                        Image(
+                            painter = painterResource(id = R.drawable.android_logo),
+                            contentDescription = "Логотип Android",
+                            modifier = Modifier
+                                .size(80.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                        )
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        // Имя и фамилия
+                        Text(
+                            text = "Jennifer Doe",
+                            fontSize = 28.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        // Должность
+                        Text(
+                            text = "Android Developer Extraordinaire",
+                            fontSize = 16.sp,
+                            color = Color.Green,
+                            textAlign = TextAlign.Center
+                        )
+
+                        Spacer(modifier = Modifier.height(32.dp))
+
+                        // Блок контактов
+                        Column(
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            ContactRow(
+                                icon = Icons.Default.Call,
+                                label = "+11 (123) 444 555 666",
+                                color = Color.Green
+                            )
+                            ContactRow(
+                                icon = Icons.Default.Share,
+                                label = "@AndroidDev",
+                                color = Color.Green
+                            )
+                            ContactRow(
+                                icon = Icons.Default.Email,
+                                label = "jen.doe@android.com",
+                                color = Color.Green
+                            )
+                        }
+                    }
+                }
+            }
 
 @Composable
 fun ContactRow(icon: ImageVector, label: String, color: Color) {
